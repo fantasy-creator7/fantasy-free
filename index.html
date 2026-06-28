@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファンタジープロンプトジェネレーター【無料版】</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #0f0c1a; color: #e8e0f0; min-height: 100vh; padding: 2rem 1rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2rem; }
+    header h1 { font-size: 22px; font-weight: 700; color: #c9b8ff; margin-bottom: 6px; }
+    header p { font-size: 13px; color: #8a7aaa; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+    .tab { flex: 1; padding: 10px; border-radius: 24px; border: 1px solid #2a2040; background: #1a1530; color: #8a7aaa; font-size: 13px; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .tab.active { background: #2d1f5e; border-color: #6c4fd4; color: #c9b8ff; }
+    .section { margin-bottom: 1.5rem; }
+    .section-label { font-size: 12px; color: #8a7aaa; margin-bottom: 10px; display: block; letter-spacing: 0.05em; text-transform: uppercase; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 7px 16px; border-radius: 20px; border: 1px solid #2a2040; background: #1a1530; color: #c9b8ff; font-size: 13px; cursor: pointer; transition: all 0.2s; position: relative; }
+    .chip:hover { border-color: #6c4fd4; background: #221840; }
+    .chip.active { background: #2d1f5e; border-color: #9b87f5; color: #fff; }
+    
+    /* グレーアウト（おねだり効果）用スタイル */
+    .chip-locked { color: #555 !important; background: #151220 !important; border-color: #221a30 !important; cursor: not-allowed; opacity: 0.7; }
+    .chip-locked::after { content: '🔒'; font-size: 10px; margin-left: 4px; }
+    .chip-locked:hover { border-color: #444 !important; background: #1a1728 !important; }
+
+    .line-preview { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-left: 4px; }
+    .line-sample { background: #c9b8ff; border-radius: 2px; width: 60px; }
+    .line-desc { font-size: 12px; color: #8a7aaa; }
+    .result-box { background: #1a1530; border: 1px solid #2a2040; border-radius: 14px; padding: 1.25rem; margin-top: 8px; }
+    .result-label { font-size: 11px; color: #6a5a8a; margin-bottom: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .result-text { font-size: 13px; color: #e8e0f0; line-height: 1.8; font-family: monospace; word-break: break-all; min-height: 1.2em; }
+    .result-text-ja { font-size: 13px; color: #c9b8ff; line-height: 1.8; min-height: 1.2em; }
+    .tip { font-size: 12px; color: #8a7aaa; margin-top: 10px; line-height: 1.6; border-left: 3px solid #6c4fd4; padding-left: 10px; }
+    .tip b { color: #c9b8ff; }
+    .actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .btn { padding: 10px 20px; border-radius: 20px; border: none; font-size: 13px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+    .btn-primary { background: #6c4fd4; color: #fff; }
+    .btn-primary:hover { background: #7c5fe4; }
+    .btn-secondary { background: #1a1530; border: 1px solid #2a2040; color: #c9b8ff; }
+    .btn-secondary:hover { border-color: #6c4fd4; }
+    footer { text-align: center; margin-top: 2.5rem; font-size: 12px; color: #4a3a6a; }
+    .divider { border: none; border-top: 1px solid #2a2040; margin: 1.5rem 0; }
+
+    /* ポップアップ用スタイル */
+    #popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #2d1f5e; border: 2px solid #9b87f5; padding: 20px; border-radius: 14px; z-index: 1000; display: none; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 280px; }
+    #popup p { margin-bottom: 15px; font-size: 14px; color: #fff; line-height: 1.5; }
+    #popup button { background: #9b87f5; color: #fff; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; }
+    #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; display: none; }
+    
+    /* コピー用の一時的なテキストエリアを隠す */
+    #hidden-copy-area { position: absolute; left: -9999px; top: 0; }
+  </style>
+</head>
+<body>
+
+<div id="overlay" onclick="closePopup()"></div>
+<div id="popup">
+  <p><b>✨ 有料完全版で解放！ ✨</b><br><br>完全版では、異世界ファンタジーやゲーム挿絵に使える何十種類以上の世界観・全キャラクター・背景が使い放題になります。</p>
+  <button onclick="closePopup()">閉じる</button>
+</div>
+
+<div class="container">
+  <header>
+    <h1>🪄 ファンタジープロンプトジェネレーター</h1>
+    <p>Google Flow (Nano Banana 2) 対応 / 塗り絵からアートプリントまで</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-line" onclick="switchMode('line')">✏️ 線画（塗り絵用）</div>
+    <div class="tab" id="tab-color" onclick="switchMode('color')">🎨 カラーアート</div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">世界観テーマ</span>
+    <div class="chips" id="world">
+      <div class="chip active" data-val="fantasy" onclick="selectChip('world', this)">ファンタジー</div>
+      <div class="chip" data-val="grimoire" onclick="selectChip('world', this)">魔導書</div>
+      <div class="chip" data-val="princess" onclick="selectChip('world', this)">プリンセス</div>
+      <div class="chip" data-val="medieval" onclick="selectChip('world', this)">中世ヨーロッパ</div>
+      <div class="chip chip-locked" onclick="showPopup()">異世界召喚</div>
+      <div class="chip chip-locked" onclick="showPopup()">サイバー魔法</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">キャラクター</span>
+    <div class="chips" id="character">
+      <div class="chip active" data-val="princess" onclick="selectChip('character', this)">プリンセス</div>
+      <div class="chip" data-val="witch" onclick="selectChip('character', this)">魔女</div>
+      <div class="chip" data-val="fairy" onclick="selectChip('character', this)">フェアリー</div>
+      <div class="chip" data-val="knight" onclick="selectChip('character', this)">騎士</div>
+      <div class="chip" data-val="alchemist" onclick="selectChip('character', this)">錬金術師</div>
+      <div class="chip chip-locked" onclick="showPopup()">ドラゴン</div>
+      <div class="chip chip-locked" onclick="showPopup()">エルフ</div>
+      <div class="chip chip-locked" onclick="showPopup()">暗黒騎士</div>
+      <div class="chip chip-locked" onclick="showPopup()">召喚士</div>
+      <div class="chip chip-locked" onclick="showPopup()">魔王</div>
+      <div class="chip chip-locked" onclick="showPopup()">聖女</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">背景・世界観</span>
+    <div class="chips" id="background">
+      <div class="chip active" data-val="forest" onclick="selectChip('background', this)">魔法の森</div>
+      <div class="chip" data-val="castle" onclick="selectChip('background', this)">古城</div>
+      <div class="chip" data-val="garden" onclick="selectChip('background', this)">花の庭園</div>
+      <div class="chip" data-val="moon" onclick="selectChip('background', this)">月夜の空</div>
+      <div class="chip" data-val="library" onclick="selectChip('background', this)">魔法図書館</div>
+      <div class="chip" data-val="ruins" onclick="selectChip('background', this)">古代遺跡</div>
+      <div class="chip chip-locked" onclick="showPopup()">魔王城・玉座</div>
+      <div class="chip chip-locked" onclick="showPopup()">異世界の戦場</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">雰囲気</span>
+    <div class="chips" id="mood">
+      <div class="chip active" data-val="dreamy" onclick="selectChip('mood', this)">夢幻的</div>
+      <div class="chip" data-val="mysterious" onclick="selectChip('mood', this)">神秘的</div>
+      <div class="chip" data-val="romantic" onclick="selectChip('mood', this)">ロマンティック</div>
+      <div class="chip" data-val="dark" onclick="selectChip('mood', this)">ダーク</div>
+      <div class="chip" data-val="cute" onclick="selectChip('mood', this)">キュート</div>
+      <div class="chip" data-val="elegant" onclick="selectChip('mood', this)">エレガンス</div>
+      <div class="chip" data-val="kawaii" onclick="selectChip('mood', this)">かわいい</div>
+      <div class="chip" data-val="nostalgic" onclick="selectChip('mood', this)">ノスタルジック</div>
+      <div class="chip" data-val="celestial" onclick="selectChip('mood', this)">セレスティアル</div>
+      <div class="chip" data-val="cottagecore" onclick="selectChip('mood', this)">コテージコア</div>
+      <div class="chip chip-locked" onclick="showPopup()">壮大なバトル</div>
+      <div class="chip chip-locked" onclick="showPopup()">絶望と混沌</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <span class="section-label">画風スタイル</span>
+    <div class="chips" id="artstyle">
+      <div class="chip active" data-val="none" onclick="selectChip('artstyle', this)">指定なし</div>
+      <div class="chip" data-val="stained" onclick="selectChip('artstyle', this)">ステンドグラス</div>
+      <div class="chip" data-val="watercolor" onclick="selectChip('artstyle', this)">水彩画風</div>
+      <div class="chip" data-val="oil" onclick="selectChip('artstyle', this)">油絵風</div>
+      <div class="chip" data-val="anime" onclick="selectChip('artstyle', this)">アニメ風</div>
+      <div class="chip" data-val="detailed" onclick="selectChip('artstyle', this)">細密画風</div>
+      <div class="chip" data-val="botanical" onclick="selectChip('artstyle', this)">ボタニカル</div>
+      <div class="chip chip-locked" onclick="showPopup()">ゲームUI風</div>
+      <div class="chip chip-locked" onclick="showPopup()">ドット絵</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="section-label">色合い</span>
+    <div class="chips" id="colorpalette">
+      <div class="chip active" data-val="none" onclick="selectChip('colorpalette', this)">指定なし</div>
+      <div class="chip" data-val="pastel" onclick="selectChip('colorpalette', this)">パステル</div>
+      <div class="chip" data-val="gold" onclick="selectChip('colorpalette', this)">ゴールド</div>
+      <div class="chip" data-val="mono" onclick="selectChip('colorpalette', this)">モノクローム</div>
+      <div class="chip" data-val="vivid" onclick="selectChip('colorpalette', this)">ビビッド</div>
+      <div class="chip" data-val="dark" onclick="selectChip('colorpalette', this)">ダークトーン</div>
+      <div class="chip" data-val="rosegold" onclick="selectChip('colorpalette', this)">ローズゴールド</div>
+      <div class="chip chip-locked" onclick="showPopup()">ネオン</div>
+    </div>
+  </div>
+
+  <div class="section" id="lineweight-section">
+    <span class="section-label" id="lineweight-label">線画の太さ</span>
+    <div class="chips" id="lineweight">
+      <div class="chip" data-val="thin" onclick="selectChip('lineweight', this)">細め</div>
+      <div class="chip active" data-val="medium" onclick="selectChip('lineweight', this)">中太</div>
+      <div class="chip" data-val="bold" onclick="selectChip('lineweight', this)">太め</div>
+    </div>
+    <div class="line-preview">
+      <div class="line-sample" id="line-sample" style="height:3px;"></div>
+      <span class="line-desc" id="line-desc"></span>
+    </div>
+  </div>
+
+  <div class="result-box">
+    <div class="result-label">Flow プロンプト（英語）</div>
+    <div class="result-text" id="result-en"></div>
+    <div class="tip" id="result-tip"></div>
+  </div>
+
+  <div class="result-box" style="margin-top:10px;">
+    <div class="result-label">日本語訳</div>
+    <div class="result-text-ja" id="result-ja"></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="copyResult('result-en', 'copy-btn', 'コピー（英語）')" id="copy-btn">
+      <i class="fa fa-copy"></i> コピー（英語）
+    </button>
+    <button class="btn btn-secondary" onclick="copyResult('result-ja', 'copy-ja-btn', 'コピー（日本語）')" id="copy-ja-btn">
+      <i class="fa fa-copy"></i> コピー（日本語）
+    </button>
+  </div>
+
+  <footer>AI-generated fantasy art &amp; coloring pages generator<br>Powered by Google Flow (Nano Banana 2)</footer>
+</div>
+
+<!-- コピー用の一時的なテキストエリア -->
+<textarea id="hidden-copy-area"></textarea>
+
+<script>
+// データ定義
+const worldData = {
+  fantasy:  { en:'fantasy world', ja:'ファンタジーの世界' },
+  grimoire: { en:'ancient grimoire world, occult symbols, magical manuscripts, arcane script borders', ja:'古代魔導書の世界、オカルトシンボル、魔法の写本、古代文字の装飾枠' },
+  princess: { en:'enchanted princess world, royal splendor, fairy tale kingdom', ja:'魔法のプリンセスの世界、王室の輝き、おとぎ話の王国' },
+  medieval: { en:'medieval European world, gothic architecture, heraldic symbols', ja:'中世ヨーロッパの世界、ゴシック建築、紋章のシンボル' }
+};
+const charData = {
+  princess:  { en:'a fantasy princess', ja:'ファンタジープリンセス' },
+  witch:     { en:'a mysterious witch', ja:'神秘的な魔女' },
+  fairy:     { en:'a delicate fairy', ja:'繊細なフェアリー' },
+  knight:    { en:'an armored knight', ja:'鎧をまとった騎士' },
+  alchemist: { en:'a wise alchemist', ja:'賢い錬金術師' }
+};
+const bgData = {
+  forest:  { en:'enchanted forest', ja:'魔法の森' },
+  castle:  { en:'ancient castle', ja:'古城' },
+  garden:  { en:'magical flower garden', ja:'魔法の花園' },
+  moon:    { en:'mystical moonlit sky', ja:'神秘的な月夜の空' },
+  library: { en:'magical ancient library filled with glowing grimoires', ja:'輝く魔導書で満たされた魔法の古代図書館' },
+  ruins:   { en:'ancient mystical ruins with arcane symbols', ja:'古代の神秘的な遺跡と魔法のシンボル' }
+};
+const moodData = {
+  dreamy:      { en:'whimsical and dreamy', ja:'夢幻的で幻想的' },
+  mysterious:  { en:'dark and mysterious', ja:'暗く神秘的' },
+  romantic:    { en:'romantic and elegant', ja:'ロマンティックでエレガント' },
+  dark:        { en:'gothic dark and haunting', ja:'ゴシックでダークな不気味さ' },
+  cute:        { en:'cute and whimsical', ja:'キュートで遊び心のある' },
+  elegant:     { en:'sophisticated and elegant, refined graceful', ja:'洗練されたエレガンス、上品で優雅な' },
+  kawaii:      { en:'kawaii cute girly sweet pastel', ja:'かわいい・ガーリー・甘め・パステル' },
+  nostalgic:   { en:'nostalgic retro vintage fairytale', ja:'ノスタルジックなレトロ・ヴィンテージおとぎ話' },
+  celestial:   { en:'celestial ethereal starry cosmic magical', ja:'天上ので星や月のコズミックな魔法の雰囲気' },
+  cottagecore: { en:'cottagecore cozy nature floral warm pastoral', ja:'コテージコア・自然・花・素朴な温かさ' }
+};
+const artStyleData = {
+  none:      { en:'', ja:'' },
+  stained:   { en:'stained glass art style, leaded glass effect, vibrant jewel tones', ja:'ステンドグラス風、鉛のガラス効果、宝石のような色調' },
+  watercolor:{ en:'watercolor painting style, soft washes, delicate brushstrokes', ja:'水彩画風、柔らかな色の滲み、繊細な筆使い' },
+  oil:       { en:'oil painting style, rich textures, impasto technique', ja:'油絵風、豊かなテクスチャ、厚塗り技法' },
+  anime:     { en:'anime illustration style, cel shaded, manga inspired', ja:'アニメイラスト風、セルシェーディング、マンガ風' },
+  detailed:  { en:'highly detailed intricate fine art, engraving style', ja:'非常に細密な芸術、版画風の細かい描写' },
+  botanical: { en:'botanical art style, scientific illustration, nature journal', ja:'ボタニカルアート風、博物画、自然図鑑スタイル' }
+};
+const colorData = {
+  none:     { en:'', ja:'' },
+  pastel:   { en:'soft pastel color palette, muted gentle tones', ja:'柔らかなパステルカラー、淡く優しいトーン' },
+  gold:     { en:'luxurious gold and jewel tone color palette, opulent', ja:'豪華なゴールドと宝石色のカラーパレット、华やか' },
+  mono:     { en:'monochrome black and white with grey tones, minimalist', ja:'モノクローム、白黒グレートーン、ミニマリスト' },
+  vivid:    { en:'vivid vibrant saturated colors, bold pop art palette', ja:'ビビッドで鮮やかな色彩、大胆なポップアートパレット' },
+  dark:     { en:'dark moody color palette, deep rich shadows, dramatic', ja:'ダークでムーディーな色調、深く豊かな影、ドラマティック' },
+  rosegold: { en:'rose gold and blush pink color palette, feminine elegant', ja:'ローズゴールドとブラッシュピンクのカラーパレット、女性的でエレガント' }
+};
+const lwData = {
+  line: {
+    thin:   { en:'very fine delicate thin lines, intricate detailed linework, thin outlines', ja:'非常に細く繊細な線、細密な線画、薄いアウトライン', h:1, desc:'細め — 繊細・大人向け。上級者向けの細密デザイン' },
+    medium: { en:'medium weight lines, clear bold outlines, easy to color line art', ja:'中太の線、クリアで太めのアウトライン、塗りやすい線画', h:3, desc:'中太 — 塗り絵の主流。大人にも子どもにも対応' },
+    bold:   { en:'thick bold lines, very heavy outlines, chunky strokes, beginner friendly', ja:'太く大胆な線、非常に太いアウトライン、初心者向け', h:6, desc:'太め — 初心者・子ども向け。はみ出しにくい' }
+  },
+  color: {
+    thin:   { en:'fine delicate linework with thin outlines, detailed illustration style', ja:'繊細な細い線と薄いアウトライン、詳細なイラストスタイル', h:1, desc:'細め — 水彩・細密画風の上品なアートプリント' },
+    medium: { en:'medium weight outlines with defined contours, balanced illustration style', ja:'中太のアウトライン、バランスの取れたイラストスタイル', h:3, desc:'中太 — アートプリントの主流。バランスがいい' },
+    bold:   { en:'bold thick outlines, strong contours, graphic art style, stained glass effect', ja:'太く大胆なアウトライン、強いコントゥア、ステンドグラス効果', h:6, desc:'太め — ステンドグラス・ポップアート風' }
+  }
+};
+
+// 状態管理
+let sel = { world:'fantasy', character:'princess', background:'forest', mood:'dreamy', lineweight:'medium', artstyle:'none', colorpalette:'none' };
+let mode = 'line';
+
+// 初期化
+window.onload = function() {
+  buildPrompt();
+};
+
+// モード切替
+function switchMode(m) {
+  mode = m;
+  document.getElementById('tab-line').className = (m === 'line' ? 'tab active' : 'tab');
+  document.getElementById('tab-color').className = (m === 'color' ? 'tab active' : 'tab');
+  buildPrompt();
+}
+
+// チップ選択（修正版：鍵付きを維持する）
+function selectChip(groupId, element) {
+  // 鍵付きの場合は何もしない（HTML側のonclickでポップアップが出る）
+  if (element.classList.contains('chip-locked')) return;
+
+  const container = document.getElementById(groupId);
+  const chips = container.getElementsByClassName('chip');
+  
+  for (let i = 0; i < chips.length; i++) {
+    // 鍵付きクラスを持っていないチップのみ、アクティブ状態を解除する
+    if (!chips[i].classList.contains('chip-locked')) {
+      chips[i].classList.remove('active');
+    }
+  }
+  
+  element.classList.add('active');
+  sel[groupId] = element.getAttribute('data-val');
+  buildPrompt();
+}
+
+// ポップアップ表示
+function showPopup() {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('popup').style.display = 'none';
+}
+
+// プロンプト構築
+function buildPrompt() {
+  const w  = worldData[sel.world];
+  const c  = charData[sel.character];
+  const b  = bgData[sel.background];
+  const m  = moodData[sel.mood];
+  const as = artStyleData[sel.artstyle];
+  const cp = colorData[sel.colorpalette];
+  const lw = lwData[mode][sel.lineweight];
+
+  document.getElementById('line-sample').style.height = lw.h + 'px';
+  document.getElementById('line-desc').textContent = lw.desc;
+  document.getElementById('lineweight-label').textContent = mode === 'line' ? '線画の太さ' : 'アウトラインの太さ';
+
+  const stylePartEn = [as.en, cp.en].filter(Boolean).join(', ');
+  const stylePartJa = [as.ja, cp.ja].filter(Boolean).join('、');
+
+  let en, ja, tip;
+  if (mode === 'line') {
+    en = `${c.en} in ${b.en}, ${w.en}, ${m.en} atmosphere${stylePartEn ? ', ' + stylePartEn : ''}, coloring book illustration, ${lw.en}, clean black line art on white background, no shading, no color fill, no gray tones, printable quality, high detail`;
+    ja = `${c.ja}が${b.ja}にいる、${w.ja}、${m.ja}な雰囲気${stylePartJa ? '、' + stylePartJa : ''}、塗り絵イラスト、${lw.ja}、白背景のクリーンな黒線画、シェーディングなし、カラーなし、グレーなし、印刷品質、高精細`;
+    tip = '💡 Google Flow設定: スタイル「線画」または「Sketch」/ ネガティブに「color, shading, gray, fill」を追加。<b>【完全版】では、エルフ・ドラゴン等の全キャラクター・背景が使い放題になります。詳細とDLは記事の下部へ！</b>';
+  } else {
+    en = `${c.en} in ${b.en}, ${w.en}, ${m.en} atmosphere${stylePartEn ? ', ' + stylePartEn : ''}, fantasy digital art, ${lw.en}, rich vibrant colors, highly detailed illustration, soft magical lighting, art print quality, 4K resolution`;
+    ja = `${c.ja}が${b.ja}にいる、${w.ja}、${m.ja}な雰囲気${stylePartJa ? '、' + stylePartJa : ''}、ファンタジーデジタルアート、${lw.ja}、鮮やかな色彩、高精細イラスト、柔らかな魔法の光、アートプリント品質、4K解像度`;
+    tip = '💡 Google Flow設定: スタイル「Digital Art」または「Illustration」/ KDP用は8.5:11推奨。<b>【完全版】では、エルフ・ドラゴン等の全キャラクター・背景が使い放題になります。詳細とDLは記事の下部へ！</b>';
+  }
+
+  document.getElementById('result-en').textContent = en;
+  document.getElementById('result-ja').textContent = ja;
+  document.getElementById('result-tip').innerHTML = tip;
+}
+
+// コピー機能
+function copyResult(elementId, btnId, originalText) {
+  const text = document.getElementById(elementId).textContent;
+  const btn = document.getElementById(btnId);
+  const hiddenArea = document.getElementById('hidden-copy-area');
+
+  hiddenArea.value = text;
+  hiddenArea.focus();
+  hiddenArea.select();
+  hiddenArea.setSelectionRange(0, 99999);
+
+  let successful = false;
+  try {
+    successful = document.execCommand('copy');
+  } catch (err) {
+    console.error('execCommand error:', err);
+  }
+
+  if (successful) {
+    showSuccess(btn, originalText);
+  } else {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function() {
+        showSuccess(btn, originalText);
+      }).catch(function(err) {
+        alert('コピーに失敗しました。手動で選択してコピーしてください。');
+      });
+    } else {
+      alert('コピー機能がお使いの環境でサポートされていません。手動でコピーしてください。');
+    }
+  }
+}
+
+function showSuccess(btn, originalText) {
+  btn.innerHTML = '<i class="fa fa-check"></i> コピーしました';
+  btn.style.background = '#28a745';
+  setTimeout(function() { 
+    btn.innerHTML = '<i class="fa fa-copy"></i> ' + originalText; 
+    btn.style.background = '';
+  }, 1500);
+}
+</script>
+</body>
+</html>
