@@ -11,177 +11,115 @@
     .container { max-width: 720px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 2rem; }
     header h1 { font-size: 22px; font-weight: 700; color: #c9b8ff; margin-bottom: 6px; }
-    header p { font-size: 13px; color: #8a7aaa; }
+    header p { font-size: 13px; color: #8a7aaa; line-height: 1.6; }
     .badge-free { display: inline-block; background: #2d1f5e; color: #9b87f5; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; margin-bottom: 10px; border: 1px solid #4a3a8a; letter-spacing: .06em; }
-    .tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-    .tab { flex: 1; padding: 10px; border-radius: 24px; border: 1px solid #2a2040; background: #1a1530; color: #8a7aaa; font-size: 13px; cursor: pointer; transition: all 0.2s; text-align: center; }
-    .tab.active { background: #2d1f5e; border-color: #6c4fd4; color: #c9b8ff; }
-    .tab.locked { border: 1px dashed #2a2040; background: #0f0a1a; color: #3a2a5a; cursor: pointer; }
-    .tab.locked:hover { border-color: #4a3a8a; color: #6a5a8a; }
+
     .section { margin-bottom: 1.5rem; }
     .section-label { font-size: 12px; color: #8a7aaa; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
-    .pro-badge { font-size: 10px; background: #2d1f5e; color: #9b87f5; border: 1px solid #4a3a8a; border-radius: 999px; padding: 1px 8px; font-weight: 700; letter-spacing: .04em; text-transform: none; }
+
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip { padding: 7px 16px; border-radius: 20px; border: 1px solid #2a2040; background: #1a1530; color: #c9b8ff; font-size: 13px; cursor: pointer; transition: all 0.2s; }
     .chip:hover { border-color: #6c4fd4; background: #221840; }
     .chip.active { background: #2d1f5e; border-color: #9b87f5; color: #fff; }
-    .chip.locked { border: 1px dashed #1e1830; background: #0c0918; color: #3a2a5a; cursor: pointer; }
-    .chip.locked:hover { border-color: #4a3a8a; color: #6a5a8a; background: #150f28; }
-    .line-preview { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-left: 4px; }
-    .line-sample { background: #c9b8ff; border-radius: 2px; width: 60px; }
-    .line-desc { font-size: 12px; color: #8a7aaa; }
+
     .result-box { background: #1a1530; border: 1px solid #2a2040; border-radius: 14px; padding: 1.25rem; margin-top: 8px; }
     .result-label { font-size: 11px; color: #6a5a8a; margin-bottom: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
     .result-text { font-size: 13px; color: #e8e0f0; line-height: 1.8; font-family: monospace; word-break: break-all; min-height: 1.2em; }
     .result-text-ja { font-size: 13px; color: #c9b8ff; line-height: 1.8; min-height: 1.2em; }
     .tip { font-size: 12px; color: #8a7aaa; margin-top: 10px; line-height: 1.6; border-left: 3px solid #6c4fd4; padding-left: 10px; }
     .tip b { color: #c9b8ff; }
+
     .actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
     .btn { padding: 10px 20px; border-radius: 20px; border: none; font-size: 13px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
     .btn-primary { background: #6c4fd4; color: #fff; }
     .btn-primary:hover { background: #7c5fe4; }
     .btn-secondary { background: #1a1530; border: 1px solid #2a2040; color: #c9b8ff; }
     .btn-secondary:hover { border-color: #6c4fd4; }
-    .upsell { background: linear-gradient(135deg, #2d1f5e 0%, #1a1040 100%); border-radius: 16px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; border: 1px solid #4a3a8a; position: relative; overflow: hidden; }
+
+    .divider { border: none; border-top: 1px solid #2a2040; margin: 1.75rem 0; }
+
+    /* 体験版の説明セクション */
+    .info-section { background: #120d1e; border: 1px solid #2a2040; border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+    .info-section h3 { font-size: 14px; font-weight: 700; color: #c9b8ff; margin-bottom: .75rem; display: flex; align-items: center; gap: 8px; }
+    .info-section p { font-size: 12.5px; color: #9a8ac0; line-height: 1.75; }
+
+    /* 有料版誘導バナー（強化版） */
+    .upsell { background: linear-gradient(135deg, #2d1f5e 0%, #1a1040 100%); border-radius: 16px; padding: 1.5rem; margin-top: 1.5rem; border: 1px solid #4a3a8a; position: relative; overflow: hidden; }
     .upsell::before { content: '✨'; position: absolute; right: 16px; top: 12px; font-size: 32px; opacity: .2; }
-    .upsell-badge { display: inline-block; background: #6C63FF; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-bottom: .6rem; letter-spacing: .06em; }
-    .upsell h3 { font-size: 15px; font-weight: 700; color: #c9b8ff; margin-bottom: .5rem; }
-    .upsell p { font-size: 12.5px; color: #9a8ac0; line-height: 1.65; margin-bottom: .9rem; }
-    .upsell ul { list-style: none; margin-bottom: 1rem; }
-    .upsell ul li { font-size: 12.5px; color: #b8a8e0; padding: 3px 0; display: flex; align-items: center; gap: 6px; }
-    .upsell ul li::before { content: '✓'; color: #9b87f5; font-weight: 700; flex-shrink: 0; }
-    .btn-upsell { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 999px; background: #6C63FF; color: #fff; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .15s; text-decoration: none; }
-    .btn-upsell:hover { background: #7c5fe4; }
-    .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 100; align-items: center; justify-content: center; }
-    .popup-overlay.show { display: flex; }
-    .popup-box { background: #1a1530; border: 1px solid #4a3a8a; border-radius: 16px; padding: 1.5rem 1.5rem 1.25rem; max-width: 300px; width: 90%; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,.5); }
-    .popup-icon { font-size: 32px; margin-bottom: .5rem; }
-    .popup-title { font-size: 15px; font-weight: 700; color: #c9b8ff; margin-bottom: .4rem; }
-    .popup-desc { font-size: 12.5px; color: #8a7aaa; line-height: 1.6; margin-bottom: 1rem; }
-    .popup-btn { display: inline-block; padding: 9px 22px; border-radius: 999px; background: #6C63FF; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; border: none; margin-bottom: .5rem; width: 100%; }
-    .popup-btn:hover { background: #7c5fe4; }
-    .popup-close { font-size: 12px; color: #4a3a6a; cursor: pointer; display: block; margin-top: .25rem; }
-    .popup-close:hover { color: #8a7aaa; }
-    .divider { border: none; border-top: 1px solid #2a2040; margin: 1.5rem 0; }
-    footer { text-align: center; margin-top: 2.5rem; font-size: 12px; color: #4a3a6a; }
+    .upsell-badge { display: inline-block; background: #6C63FF; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-bottom: .75rem; letter-spacing: .06em; }
+    .upsell h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: .6rem; line-height: 1.4; }
+    .upsell p { font-size: 13px; color: #b8a8e0; line-height: 1.7; margin-bottom: 1.1rem; }
+    .upsell p strong { color: #c9b8ff; }
+
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 1.25rem; }
+    .compare-table th { background: #1a1530; color: #8a7aaa; font-weight: 600; padding: .6rem .75rem; text-align: left; border-bottom: 1px solid #2a2040; font-size: 11px; letter-spacing: .04em; }
+    .compare-table td { padding: .6rem .75rem; color: #b8a8e0; border-bottom: 1px solid #221840; line-height: 1.5; vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { color: #6a5a8a; white-space: nowrap; }
+    .compare-table td.pro-cell { color: #c9b8ff; font-weight: 600; }
+    .compare-table .row-label { font-weight: 700; color: #9b87f5; }
+
+    .btn-upsell { display: inline-flex; align-items: center; gap: 6px; padding: 12px 26px; border-radius: 999px; background: #6C63FF; color: #fff; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all .15s; text-decoration: none; width: 100%; justify-content: center; }
+    .btn-upsell:hover { background: #7c5fe4; transform: translateY(-1px); }
+
+    footer { text-align: center; margin-top: 2.5rem; font-size: 12px; color: #4a3a6a; line-height: 1.8; }
     #hidden-copy-area { position: absolute; left: -9999px; top: 0; }
   </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="badge-free">無料お試し版</div>
+    <div class="badge-free">無料お試し版（体験版）</div>
     <h1>✨ ファンタジープロンプトジェネレーター</h1>
-    <p>Google Flow (Nano Banana 2 / Pro) 最適化／GPT-2・FLUX.2 Proでも生成可能<br>線画（塗り絵）専用・簡易版</p>
+    <p>Google Flow (Nano Banana 2 / Pro) 最適化／GPT-2・FLUX.2 Proでも生成可能<br>線画（塗り絵）専用・お試し版</p>
   </header>
 
-  <div class="tabs">
-    <div class="tab active" id="tab-line">✏️ 線画（塗り絵用）</div>
-    <div class="tab locked" id="tab-color" onclick="showPopup('tab')">🔒 カラーアート（有料版）</div>
+  <!-- 体験版の説明 -->
+  <div class="info-section">
+    <h3>📖 この無料版でできること</h3>
+    <p>
+      これは「線画（塗り絵）」専用の体験版です。世界観・キャラクター・背景・雰囲気を選んで、Google Flow向けのプロンプトを自動生成できます。<br><br>
+      まずはボタンを選んで、プロンプトをコピーし、Google Flowなどの画像生成AIに貼り付けて試してみてください。
+    </p>
   </div>
 
+  <!-- 世界観テーマ -->
   <div class="section">
     <span class="section-label">世界観テーマ</span>
     <div class="chips" id="world">
       <div class="chip active" data-val="fantasy" onclick="selectChip('world',this)">ファンタジー</div>
       <div class="chip" data-val="princess" onclick="selectChip('world',this)">プリンセス</div>
       <div class="chip" data-val="medieval" onclick="selectChip('world',this)">中世ヨーロッパ</div>
-      <div class="chip locked" onclick="showPopup()">🔒 魔導書</div>
-      <div class="chip locked" onclick="showPopup()">🔒 異世界召喚</div>
-      <div class="chip locked" onclick="showPopup()">🔒 サイバー魔法</div>
     </div>
   </div>
 
+  <!-- キャラクター -->
   <div class="section">
     <span class="section-label">キャラクター</span>
     <div class="chips" id="character">
       <div class="chip active" data-val="princess" onclick="selectChip('character',this)">プリンセス</div>
       <div class="chip" data-val="witch" onclick="selectChip('character',this)">魔女</div>
       <div class="chip" data-val="knight" onclick="selectChip('character',this)">騎士</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ドラゴン</div>
-      <div class="chip locked" onclick="showPopup()">🔒 暗黒騎士</div>
-      <div class="chip locked" onclick="showPopup()">🔒 召喚士</div>
-      <div class="chip locked" onclick="showPopup()">🔒 魔王</div>
-      <div class="chip locked" onclick="showPopup()">🔒 聖女</div>
-      <div class="chip locked" onclick="showPopup()">🔒 エルフ</div>
-      <div class="chip locked" onclick="showPopup()">🔒 錬金術師</div>
-      <div class="chip locked" onclick="showPopup()">🔒 フェアリー</div>
     </div>
   </div>
 
+  <!-- 背景 -->
   <div class="section">
     <span class="section-label">背景・世界観</span>
     <div class="chips" id="background">
       <div class="chip active" data-val="forest" onclick="selectChip('background',this)">魔法の森</div>
       <div class="chip" data-val="castle" onclick="selectChip('background',this)">古城</div>
       <div class="chip" data-val="garden" onclick="selectChip('background',this)">花の庭園</div>
-      <div class="chip locked" onclick="showPopup()">🔒 月夜の空</div>
-      <div class="chip locked" onclick="showPopup()">🔒 魔法図書館</div>
-      <div class="chip locked" onclick="showPopup()">🔒 古代遺跡</div>
-      <div class="chip locked" onclick="showPopup()">🔒 魔王城・玉座</div>
-      <div class="chip locked" onclick="showPopup()">🔒 異世界の戦場</div>
     </div>
   </div>
 
+  <!-- 雰囲気 -->
   <div class="section">
     <span class="section-label">雰囲気</span>
     <div class="chips" id="mood">
       <div class="chip active" data-val="dreamy" onclick="selectChip('mood',this)">夢幻的</div>
       <div class="chip" data-val="romantic" onclick="selectChip('mood',this)">ロマンティック</div>
       <div class="chip" data-val="mysterious" onclick="selectChip('mood',this)">神秘的</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ダーク</div>
-      <div class="chip locked" onclick="showPopup()">🔒 エレガンス</div>
-      <div class="chip locked" onclick="showPopup()">🔒 かわいい</div>
-      <div class="chip locked" onclick="showPopup()">🔒 セレスティアル</div>
-      <div class="chip locked" onclick="showPopup()">🔒 コテージコア</div>
-      <div class="chip locked" onclick="showPopup()">🔒 壮大なバトル</div>
-      <div class="chip locked" onclick="showPopup()">🔒 絶望と混沌</div>
-      <div class="chip locked" onclick="showPopup()">🔒 キュート</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ノスタルジック</div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <div class="section">
-    <span class="section-label">画風スタイル <span class="pro-badge">有料版</span></span>
-    <div class="chips">
-      <div class="chip locked" onclick="showPopup()">🔒 指定なし</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ステンドグラス</div>
-      <div class="chip locked" onclick="showPopup()">🔒 水彩画風</div>
-      <div class="chip locked" onclick="showPopup()">🔒 油絵風</div>
-      <div class="chip locked" onclick="showPopup()">🔒 アニメ風</div>
-      <div class="chip locked" onclick="showPopup()">🔒 細密画風</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ボタニカル</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ゲームUI風</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ドット絵</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <span class="section-label">色合い <span class="pro-badge">有料版</span></span>
-    <div class="chips">
-      <div class="chip locked" onclick="showPopup()">🔒 指定なし</div>
-      <div class="chip locked" onclick="showPopup()">🔒 パステル</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ゴールド</div>
-      <div class="chip locked" onclick="showPopup()">🔒 モノクローム</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ビビッド</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ダークトーン</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ローズゴールド</div>
-      <div class="chip locked" onclick="showPopup()">🔒 ネオン</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <span class="section-label">線画の太さ <span class="pro-badge">細め・太めは有料版</span></span>
-    <div class="chips" id="lineweight">
-      <div class="chip locked" onclick="showPopup()">🔒 細め</div>
-      <div class="chip active">中太（無料版）</div>
-      <div class="chip locked" onclick="showPopup()">🔒 太め</div>
-    </div>
-    <div class="line-preview">
-      <div class="line-sample" id="line-sample" style="height:3px;"></div>
-      <span class="line-desc" id="line-desc">中太 — 塗り絵の主流。大人にも子どもにも対応</span>
     </div>
   </div>
 
@@ -205,122 +143,38 @@
     </button>
   </div>
 
+  <hr class="divider">
+
+  <!-- 有料版の魅力を伝えるセクション -->
   <div class="upsell">
-    <div class="upsell-badge">PRO VERSION</div>
+    <div class="upsell-badge">PRO VERSION（完全版）</div>
     <h3>「ゴリゴリの異世界」も一発で作れます</h3>
-    <p>この無料版は線画（塗り絵）専用の簡易版です。有料版では<strong style="color:#c9b8ff">ゲーム開発・小説挿絵・同人誌</strong>に使えるダークで本格的な異世界ファンタジーも即生成できます：</p>
-    <ul>
-      <li>カラーアートモード搭載（線画・カラー切替）</li>
-      <li>暗黒騎士・召喚士・魔王・聖女など本格キャラ11種</li>
-      <li>魔王城・異世界の戦場など背景8種</li>
-      <li>壮大なバトル・絶望と混沌など雰囲気12種</li>
-      <li>画風スタイル9種・色合い8種・線の太さ3種</li>
-    </ul>
-    <a class="btn-upsell" href="#" onclick="alert('有料版のnoteリンクをここに設定してください')">有料版（完全版）を見る →</a>
+    <p>この無料版は線画（塗り絵）専用のお試し版です。完全版では<strong>カラーアート・画風スタイル・色合い・線の太さ</strong>まで自由に組み合わせられ、<strong>ゲーム開発・小説挿絵・同人誌</strong>にも使えるダークで本格的な異世界ファンタジーも即生成できます。</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th></th><th>無料版</th><th>完全版</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">モード</td><td>線画のみ</td><td class="pro-cell">線画＋カラー</td></tr>
+        <tr><td class="row-label">世界観</td><td>3種</td><td class="pro-cell">6種</td></tr>
+        <tr><td class="row-label">キャラクター</td><td>3種</td><td class="pro-cell">11種（暗黒騎士・魔王・聖女など）</td></tr>
+        <tr><td class="row-label">背景</td><td>3種</td><td class="pro-cell">8種（魔王城・異世界の戦場など）</td></tr>
+        <tr><td class="row-label">雰囲気</td><td>3種</td><td class="pro-cell">12種（壮大なバトル・絶望と混沌など）</td></tr>
+        <tr><td class="row-label">画風スタイル</td><td>－</td><td class="pro-cell">9種（ステンドグラス・水彩・油絵など）</td></tr>
+        <tr><td class="row-label">色合い</td><td>－</td><td class="pro-cell">8種（パステル・ゴールド・ネオンなど）</td></tr>
+        <tr><td class="row-label">線の太さ</td><td>中太のみ</td><td class="pro-cell">細め・中太・太め</td></tr>
+      </tbody>
+    </table>
+
+    <a class="btn-upsell" href="#" onclick="alert('有料版のnoteリンクをここに設定してください')">完全版（有料）を見る →</a>
   </div>
 
   <footer>AI-generated fantasy art &amp; coloring pages generator<br>Free Trial Version</footer>
 </div>
 
-<div class="popup-overlay" id="popup" onclick="hidePopup(event)">
-  <div class="popup-box">
-    <div class="popup-icon" id="popup-icon">🔒</div>
-    <div class="popup-title" id="popup-title">有料版で解放されます</div>
-    <div class="popup-desc" id="popup-desc"></div>
-    <button class="popup-btn" onclick="goToPro()">有料版を見る →</button>
-    <span class="popup-close" onclick="hidePopup()">閉じる</span>
-  </div>
-</div>
-
 <textarea id="hidden-copy-area"></textarea>
 
-<script>
-const worldData = {
-  fantasy:  { en:'fantasy world', ja:'ファンタジーの世界' },
-  princess: { en:'enchanted princess world, royal splendor, fairy tale kingdom', ja:'魔法のプリンセスの世界、王室の輝き、おとぎ話の王国' },
-  medieval: { en:'medieval European world, gothic architecture, heraldic symbols', ja:'中世ヨーロッパの世界、ゴシック建築、紋章のシンボル' }
-};
-const charData = {
-  princess: { en:'a fantasy princess', ja:'ファンタジープリンセス' },
-  witch:    { en:'a mysterious witch', ja:'神秘的な魔女' },
-  knight:   { en:'an armored knight', ja:'鎧をまとった騎士' }
-};
-const bgData = {
-  forest:  { en:'enchanted forest', ja:'魔法の森' },
-  castle:  { en:'ancient castle', ja:'古城' },
-  garden:  { en:'magical flower garden', ja:'魔法の花園' }
-};
-const moodData = {
-  dreamy:     { en:'whimsical and dreamy', ja:'夢幻的で幻想的' },
-  romantic:   { en:'romantic and elegant', ja:'ロマンティックでエレガント' },
-  mysterious: { en:'dark and mysterious', ja:'暗く神秘的' }
-};
-let sel = { world:'fantasy', character:'princess', background:'forest', mood:'dreamy' };
-
-window.onload = function(){ buildPrompt(); };
-
-function selectChip(groupId, element){
-  const container = document.getElementById(groupId);
-  if(!container) return;
-  Array.from(container.getElementsByClassName('chip')).forEach(function(c){
-    if(!c.classList.contains('locked')) c.className = 'chip';
-  });
-  element.className = 'chip active';
-  sel[groupId] = element.getAttribute('data-val');
-  buildPrompt();
-}
-
-function buildPrompt(){
-  const w = worldData[sel.world] || worldData.fantasy;
-  const c = charData[sel.character] || charData.princess;
-  const b = bgData[sel.background] || bgData.forest;
-  const m = moodData[sel.mood] || moodData.dreamy;
-  const en = c.en+' in '+b.en+', '+w.en+', '+m.en+' atmosphere, coloring book illustration, medium weight lines, clear bold outlines, easy to color line art, clean black line art on white background, no shading, no color fill, no gray tones, printable quality, high detail';
-  const ja = c.ja+'が'+b.ja+'にいる、'+w.ja+'、'+m.ja+'な雰囲気、塗り絵イラスト、中太の線、クリアで太めのアウトライン、塗りやすい線画、白背景のクリーンな黒線画、シェーディングなし、カラーなし、グレーなし、印刷品質、高精細';
-  document.getElementById('result-en').textContent = en;
-  document.getElementById('result-ja').textContent = ja;
-  document.getElementById('result-tip').innerHTML = '💡 Google Flow設定: スタイル「線画」または「Sketch」/ ネガティブに「color, shading, gray, fill」を追加 / <b>画風・色合い・線の太さ・カラーモードは有料版で解放</b>';
-}
-
-function copyResult(elementId, btnId, originalText){
-  var text = document.getElementById(elementId).textContent;
-  var btn = document.getElementById(btnId);
-  var ha = document.getElementById('hidden-copy-area');
-  ha.value = text; ha.focus(); ha.select(); ha.setSelectionRange(0,99999);
-  var ok = false;
-  try{ ok = document.execCommand('copy'); }catch(e){}
-  if(ok){ showSuccess(btn, originalText); }
-  else if(navigator.clipboard){
-    navigator.clipboard.writeText(text).then(function(){ showSuccess(btn, originalText); })
-    .catch(function(){ alert('手動でコピーしてください。'); });
-  }
-}
-
-function showSuccess(btn, originalText){
-  btn.innerHTML = '<i class="fa fa-check"></i> コピーしました';
-  btn.style.background = '#28a745';
-  setTimeout(function(){ btn.innerHTML = '<i class="fa fa-copy"></i> '+originalText; btn.style.background=''; }, 1500);
-}
-
-function showPopup(type){
-  var icon=document.getElementById('popup-icon');
-  var title=document.getElementById('popup-title');
-  var desc=document.getElementById('popup-desc');
-  if(type==='tab'){
-    icon.textContent='🎨';
-    title.textContent='カラーアートは有料版です';
-    desc.innerHTML='無料版は線画（塗り絵）モードのみ対応しています。<br><br>カラーアート生成・画風スタイル・色合い指定などは<strong style="color:#c9b8ff">有料版（完全版）</strong>でお使いいただけます。';
-  } else {
-    icon.textContent='⚔️';
-    title.textContent='有料版で解放されます';
-    desc.innerHTML='ゲーム・小説・同人誌向けの本格キャラ・背景・雰囲気は有料版限定です。<br><br>全11キャラ・8背景・12雰囲気・画風9種・色合い8種が<strong style="color:#c9b8ff">使い放題</strong>になります。';
-  }
-  document.getElementById('popup').classList.add('show');
-}
-function hidePopup(e){
-  if(!e||e.target===document.getElementById('popup')) document.getElementById('popup').classList.remove('show');
-}
-function goToPro(){ alert('有料版のnoteリンクをここに設定してください'); hidePopup(); }
-</script>
+<script>const _0x3553d6=_0x1a60;(function(_0x2aecc3,_0x115894){const _0x369a91=_0x1a60,_0x4d7bd3=_0x2aecc3();while(!![]){try{const _0x7cacbc=parseInt(_0x369a91(0x197))/0x1*(-parseInt(_0x369a91(0x1b9))/0x2)+-parseInt(_0x369a91(0x155))/0x3+-parseInt(_0x369a91(0x15d))/0x4+-parseInt(_0x369a91(0x1fd))/0x5+parseInt(_0x369a91(0x201))/0x6*(parseInt(_0x369a91(0x17d))/0x7)+-parseInt(_0x369a91(0x14e))/0x8*(-parseInt(_0x369a91(0x21f))/0x9)+parseInt(_0x369a91(0x1ad))/0xa*(parseInt(_0x369a91(0x1a2))/0xb);if(_0x7cacbc===_0x115894)break;else _0x4d7bd3['push'](_0x4d7bd3['shift']());}catch(_0x34c8b5){_0x4d7bd3['push'](_0x4d7bd3['shift']());}}}(_0x3c88,0x6db09));const _0x5b866f=(function(){const _0x3756b5={'MbENy':function(_0x44a085,_0x348b1b,_0x439c04){return _0x44a085(_0x348b1b,_0x439c04);}};let _0x36158f=!![];return function(_0x1ed01d,_0x507229){const _0x4ad1c5=_0x1a60;if(_0x4ad1c5(0x20a)!==_0x4ad1c5(0x20a))_0x3756b5['MbENy'](_0x4effe5,_0x5964d7,_0x2f0a82);else{const _0x52ca6f=_0x36158f?function(){const _0x3c08de=_0x4ad1c5;if(_0x507229){const _0x1d8309=_0x507229[_0x3c08de(0x1c6)](_0x1ed01d,arguments);return _0x507229=null,_0x1d8309;}}:function(){};return _0x36158f=![],_0x52ca6f;}};}()),_0xc0e9d4=_0x5b866f(this,function(){const _0x58a1f1=_0x1a60;return _0xc0e9d4['toStr'+'ing']()[_0x58a1f1(0x213)+'h'](_0x58a1f1(0x1ca)+_0x58a1f1(0x198)+'+$')[_0x58a1f1(0x20c)+'ing']()['const'+'ructo'+'r'](_0xc0e9d4)['searc'+'h'](_0x58a1f1(0x1ca)+_0x58a1f1(0x198)+'+$');});_0xc0e9d4();const _0x2c519d={};_0x2c519d['en']=_0x3553d6(0x22e)+_0x3553d6(0x192)+'rld',_0x2c519d['ja']='ファンタジ'+_0x3553d6(0x1d9);const _0x59cdb4={};_0x59cdb4['en']='encha'+_0x3553d6(0x19b)+'princ'+_0x3553d6(0x184)+_0x3553d6(0x1b1)+_0x3553d6(0x209)+_0x3553d6(0x156)+'endor'+_0x3553d6(0x163)+_0x3553d6(0x202)+'le\x20ki'+'ngdom',_0x59cdb4['ja']=_0x3553d6(0x1ff)+_0x3553d6(0x1ea)+_0x3553d6(0x1f1)+_0x3553d6(0x16e)+_0x3553d6(0x1bd);const _0x78dc43={};function _0x1a60(_0x28b868,_0x5c163c){_0x28b868=_0x28b868-0x14a;const _0x1f5f78=_0x3c88();let _0xc0e9d4=_0x1f5f78[_0x28b868];if(_0x1a60['XgciFr']===undefined){var _0x5b866f=function(_0x3b7516){const _0x4fd60c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x20f932='',_0x1876a5='',_0x580be6=_0x20f932+_0x5b866f,_0xc62186=(''+function(){return 0x0;})['indexOf']('\x0a')!==-0x1;for(let _0x2b8bfd=0x0,_0x50c1d3,_0x5c843a,_0x299a00=0x0;_0x5c843a=_0x3b7516['charAt'](_0x299a00++);~_0x5c843a&&(_0x50c1d3=_0x2b8bfd%0x4?_0x50c1d3*0x40+_0x5c843a:_0x5c843a,_0x2b8bfd++%0x4)?_0x20f932+=_0xc62186||_0x580be6['charCodeAt'](_0x299a00+0xa)-0xa!==0x0?String['fromCharCode'](0xff&_0x50c1d3>>(-0x2*_0x2b8bfd&0x6)):_0x2b8bfd:0x0){_0x5c843a=_0x4fd60c['indexOf'](_0x5c843a);}for(let _0x15ef7d=0x0,_0x3d6a55=_0x20f932['length'];_0x15ef7d<_0x3d6a55;_0x15ef7d++){_0x1876a5+='%'+('00'+_0x20f932['charCodeAt'](_0x15ef7d)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1876a5);};_0x1a60['qFysLS']=_0x5b866f,_0x1a60['kkvzKJ']={},_0x1a60['XgciFr']=!![];}const _0x3c888d=_0x1f5f78[0x0],_0x1a607e=_0x28b868+_0x3c888d,_0x401ad5=_0x1a60['kkvzKJ'][_0x1a607e];if(!_0x401ad5){const _0x2ad279=function(_0x215030){this['QbwngH']=_0x215030,this['VQgZdU']=[0x1,0x0,0x0],this['WdVEGA']=function(){return'newState';},this['SoFXbi']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['RnpZjj']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x2ad279['prototype']['TJmCYR']=function(){const _0x13d5f5=new RegExp(this['SoFXbi']+this['RnpZjj']),_0x446754=_0x13d5f5['test'](this['WdVEGA']['toString']())?--this['VQgZdU'][0x1]:--this['VQgZdU'][0x0];return this['mLZWuw'](_0x446754);},_0x2ad279['prototype']['mLZWuw']=function(_0x5346b0){if(!Boolean(~_0x5346b0))return _0x5346b0;return this['LYwOoi'](this['QbwngH']);},_0x2ad279['prototype']['LYwOoi']=function(_0x2fc338){for(let _0x10a414=0x0,_0x4765fc=this['VQgZdU']['length'];_0x10a414<_0x4765fc;_0x10a414++){this['VQgZdU']['push'](Math['round'](Math['random']())),_0x4765fc=this['VQgZdU']['length'];}return _0x2fc338(this['VQgZdU'][0x0]);},(''+function(){return 0x0;})['indexOf']('\x0a')===-0x1&&new _0x2ad279(_0x1a60)['TJmCYR'](),_0xc0e9d4=_0x1a60['qFysLS'](_0xc0e9d4),_0x1a60['kkvzKJ'][_0x1a607e]=_0xc0e9d4;}else _0xc0e9d4=_0x401ad5;return _0xc0e9d4;}_0x78dc43['en']=_0x3553d6(0x177)+_0x3553d6(0x203)+_0x3553d6(0x15e)+_0x3553d6(0x214)+'rld,\x20'+_0x3553d6(0x178)+_0x3553d6(0x22a)+_0x3553d6(0x19e)+'ture,'+_0x3553d6(0x229)+'ldic\x20'+_0x3553d6(0x1ed)+'ls',_0x78dc43['ja']=_0x3553d6(0x215)+_0x3553d6(0x1e7)+_0x3553d6(0x1b5)+_0x3553d6(0x20f)+_0x3553d6(0x1cc);const _0x51fd6a={};_0x51fd6a[_0x3553d6(0x22e)+'sy']=_0x2c519d,_0x51fd6a[_0x3553d6(0x1da)+_0x3553d6(0x21a)]=_0x59cdb4,_0x51fd6a[_0x3553d6(0x177)+_0x3553d6(0x1ce)]=_0x78dc43;const worldData=_0x51fd6a,_0x2176af={};_0x2176af['en']=_0x3553d6(0x20b)+_0x3553d6(0x1bc)+'princ'+_0x3553d6(0x21a),_0x2176af['ja']=_0x3553d6(0x14f)+_0x3553d6(0x1fe)+'ス';const _0x3aeea9={};_0x3aeea9['en']='a\x20mys'+_0x3553d6(0x1e2)+'us\x20wi'+_0x3553d6(0x1ab),_0x3aeea9['ja']='神秘的な魔'+'女';const _0x16ac60={};_0x16ac60['en']=_0x3553d6(0x207)+_0x3553d6(0x218)+'\x20knig'+'ht',_0x16ac60['ja']=_0x3553d6(0x1b3)+_0x3553d6(0x206);const _0x41647b={};_0x41647b[_0x3553d6(0x1da)+_0x3553d6(0x21a)]=_0x2176af,_0x41647b[_0x3553d6(0x1b7)]=_0x3aeea9,_0x41647b[_0x3553d6(0x228)+'t']=_0x16ac60;const charData=_0x41647b,_0x1bf31e={};_0x1bf31e['en']=_0x3553d6(0x22f)+_0x3553d6(0x19b)+_0x3553d6(0x164)+'t',_0x1bf31e['ja']=_0x3553d6(0x17b);const _0xb68c6a={};_0xb68c6a['en']=_0x3553d6(0x1a8)+_0x3553d6(0x21d)+'stle',_0xb68c6a['ja']='古城';function _0x3c88(){const _0x32b22a=['Bw9Vza','y2HHCMe','DgLVBIW','zMfUDge','zw5JAge','BMqSig4','qNLjza','C3KGDg8','8j+sOsbhB28','mti4BNDgrM5h','44ov44kH44oZ44k/44k4','y2XPCgi','zNjVBq','A2v0y2G','igf0Bw8','tMfTzq','mJi0mZCZow9OALDqtq','BcbZCgW','B3DLCIa','C2vSzwm','DMfSDwu','yw5Kigq','BwfNAwm','DgHLBG','mJa1nJKXmKTJEuT1yW','DxjVCgu','CMf5ihq','44gG44gv44ge44cc','zgv0ywK','ic8Gpgi','lcbMywK','zM9Yzxm','CM9Tyw4','CYWGzwe','zwDHBNq','44oQ44o844oZ44gQ6BUs','Axr5lca','44kI44kM44oi44oP44kK','At4G44kZ44ou','BooaJEocKUI/VEwkOa','iJ48l2K','6lYD44gn44cb44gk44gO','y3rLCG','AwnHBca','D29YBgq','zMeGzMe','BYbZAge','vKfnwvC','5Agx44kk57w144kK44oP','44o844oh44kJ44oZ44kW','BwvKAwu','z290AgK','pgKGy2W','44oR44cm57EA55s744cn','6A2u5Rov44gU5QoU','rKvoA0q','mJfcBNf1rNq','44gz44ge57EA55s744cb','r1nnyMW','BgqGB3u','ihDOAxq','EhbfvLq','44gQ44gx44cb44kR44oP','zxnZihC','44cnlYdJG43JGQW','5AsQ44gv44o744kR44oP','44og44kJ44ow44gR44cm','CNqGB24','qwzsuxi','44oZ44cb5Agx44kk44ke','Dgv4Dem','z3vPsei','Aw5Uzxi','z2v0qxq','oIdJGRNJGR/JGQq','EuvJrxi','D3jPDgu','C3KGD28','CIbSAw4','Dc10Axa','CKjOtvm','zM9Yrwe','odi3C2zLy29T','ksSPkYK','BMqGzwW','BxLZDgu','BNrLzca','zsbHCNq','44o844gx44g+44gx44gF','AgL0zwm','5AsI5BM755Qe44gN5BM7','44kI44gN5AsQ44kb44gU','B25syw4','nZiXmJm3ExfVEMnN','5zci44ge44o757EA44gU','B25LCYW','zhjLyw0','zM9JDxm','B2fYza','yw5JAwu','qLvXs2i','lcbMAwW','DgnO','werYtvO','mJiWvKrkq2nx','C0j5q2W','ig5VigC','AgLKzgu','B3jSzcW','vNzLC20','6y6N44ks44g+44gO44gJ','zsWGy28','44cb44k044k344od44kV','lcbZAge','D2L0y2G','y2XHC3m','nZm4vvDOEuvv','5A6m5ywO54Mi44gN5yIP','y29WEq','DgfZEsa','44go6kMX44gU546l5zU9','yw5Kig0','C3bOzxi','44gQ6zUW5zUY5Rcx44cb','ywWGzMW','zgf0ys0','AYi+pc8','44g+44gF44gV44cmuW','Es1HCMu','yxbWBhK','yxiGyM8','yw4GyMW','pUEuU+MIQoodU+IjSG','kcGOlIS','y2fZDgW','44gU44k344oZ44oC44oR','Dxn0CMe','DMfS','z2v0rwW','DgLJ','CM91BMq','z2XLiey','BgvJDgK','ignVBg8','swDgEw0','z3nXD1m','y29SB3i','z2fYzgu','44o844gU5lIw55wm','ChjPBMm','A3juBfy','B25SB2e','44o844oI44o844oj44gV','zgLUzYW','Aw5Lige','57EA55s744cb44k344kN','y2HPCca','DgvYAw8','zw1LBNq','44kZ44ou44o844gR5AsX','6AUy57k+57sW','yMfJA2C','44od44or44gU5lIw55wm','tevRBeG','B250zw4','44oZ44k744k544gU5lIw','ANHqtKO','55M96iom5PMV44gU44kV','C3LTyM8','CMvHBxK','CMvZDwW','C3r5Bgu','55wm44cb546l5A6K44gU','44cc5OMl5yUv44gN44kZ','44oS44o844gQ44gx44cb','zgfYAYa','44o844gQ44gx44cb44kW','AYbPBgW','5y2W5yI35zob6loQ44cb','ufzmr3O','6A2u5Rov44gU6iQX5zYs','zYbIB28','44ou44o844gx44gM44gp','ig5Vigm','mJq5odu4mfzXtwjfsq','44o844ox44oQ44oZ44k7','6A2u5Rov44gU44ox44oQ','yxLfvhi','mta5otm1mgzNtMTVwa','CNKGDge','DMfSieu','sfrnta','A2DYB3u','44gF6AIo5AoR','yw4Gyxi','zMLSBcW','ihjVEwe','y2HNr3K','ysbMyw4','Dg9tDhi','lcbJBgu','zLHoBwG','5BU656+j44cb57sl56UG','BI1JB3a','BgLUzxm','zxHLy0m','C2vHCMm','yw4GD28','5lIT5lIw44oO44o844oT','Bg936kIT5A6A','vfHRBvC','Bw9Yzwq','B2XVCIa','zxnZ','ig1LzgK','ywn0Axy','BNqGy2e','yKnQswW','mJK0odqWqK50uwrx','uMz5sMm','44k544oi44cb5lIT5AsQ','r3fowNq','swXVD00','yxnZpsi','yxnZtMe','EwTKq2G','lwnVChK','A25Pz2G','igHLCMe','yYbHCMm'];_0x3c88=function(){return _0x32b22a;};return _0x3c88();}const _0x482484={};_0x482484['en']=_0x3553d6(0x15b)+_0x3553d6(0x1c1)+_0x3553d6(0x157)+_0x3553d6(0x1d8)+'n',_0x482484['ja']=_0x3553d6(0x1f9);const _0x3051c1={};_0x3051c1[_0x3553d6(0x164)+'t']=_0x1bf31e,_0x3051c1[_0x3553d6(0x1cb)+'e']=_0xb68c6a,_0x3051c1['garde'+'n']=_0x482484;const bgData=_0x3051c1,_0xb561a9={};_0xb561a9['en']='whims'+_0x3553d6(0x170)+_0x3553d6(0x15a)+_0x3553d6(0x1ee),_0xb561a9['ja']=_0x3553d6(0x19f)+'想的';const _0x481872={};_0x481872['en']=_0x3553d6(0x165)+'tic\x20a'+_0x3553d6(0x199)+_0x3553d6(0x167),_0x481872['ja']='ロマンティ'+'ックでエレ'+'ガント';const _0x3a5c6c={};_0x3a5c6c['en']=_0x3553d6(0x1f4)+_0x3553d6(0x1be)+'yster'+'ious',_0x3a5c6c['ja']='暗く神秘的';const _0x5764dd={};_0x5764dd[_0x3553d6(0x1a5)+'y']=_0xb561a9,_0x5764dd[_0x3553d6(0x165)+_0x3553d6(0x1d0)]=_0x481872,_0x5764dd[_0x3553d6(0x19a)+'rious']=_0x3a5c6c;const moodData=_0x5764dd,_0x5644ca={};_0x5644ca[_0x3553d6(0x171)]=_0x3553d6(0x22e)+'sy',_0x5644ca[_0x3553d6(0x22c)+_0x3553d6(0x16f)]=_0x3553d6(0x1da)+'ess',_0x5644ca[_0x3553d6(0x1e6)+_0x3553d6(0x1d1)]=_0x3553d6(0x164)+'t',_0x5644ca[_0x3553d6(0x22b)]=_0x3553d6(0x1a5)+'y';let sel=_0x5644ca;window[_0x3553d6(0x1dc)+'d']=function(){const _0x375fb7={'uvGSi':function(_0x391b54){return _0x391b54();}};_0x375fb7['uvGSi'](buildPrompt);};function selectChip(_0x136f08,_0x262a1f){const _0x3a014f=_0x3553d6,_0x53f7fc={'XDrMZ':'chip','lyKoh':_0x3a014f(0x1e1)+_0x3a014f(0x21c)+'e','ayETr':_0x3a014f(0x1c2)+_0x3a014f(0x1ce),'jxPNJ':function(_0x374043){return _0x374043();}},_0x3ef260=document[_0x3a014f(0x1cf)+_0x3a014f(0x1e3)+_0x3a014f(0x14b)](_0x136f08);if(!_0x3ef260)return;Array[_0x3a014f(0x151)](_0x3ef260[_0x3a014f(0x1cf)+'ement'+_0x3a014f(0x1ae)+_0x3a014f(0x225)+'me'](_0x53f7fc[_0x3a014f(0x1ac)]))[_0x3a014f(0x196)+'ch'](function(_0x14bb28){const _0x2773e2=_0x3a014f;_0x14bb28[_0x2773e2(0x1b8)+_0x2773e2(0x154)]=_0x53f7fc[_0x2773e2(0x1ac)];}),_0x262a1f[_0x3a014f(0x1b8)+_0x3a014f(0x154)]=_0x53f7fc['lyKoh'],sel[_0x136f08]=_0x262a1f[_0x3a014f(0x18e)+'tribu'+'te'](_0x53f7fc[_0x3a014f(0x200)]),_0x53f7fc[_0x3a014f(0x1eb)](buildPrompt);}function buildPrompt(){const _0x390dbd=_0x3553d6,_0x5a8b6d={};_0x5a8b6d[_0x390dbd(0x1d6)]=function(_0x14598a,_0x413d32){return _0x14598a+_0x413d32;},_0x5a8b6d['yEcEr']=function(_0x12034c,_0x393465){return _0x12034c+_0x393465;},_0x5a8b6d[_0x390dbd(0x174)]=function(_0x4a9052,_0x42414b){return _0x4a9052+_0x42414b;},_0x5a8b6d[_0x390dbd(0x226)]=function(_0x1d406c,_0x16b80b){return _0x1d406c+_0x16b80b;},_0x5a8b6d[_0x390dbd(0x195)]='にいる、',_0x5a8b6d[_0x390dbd(0x21e)]=_0x390dbd(0x1c0)+_0x390dbd(0x175)+_0x390dbd(0x221)+'の線、クリ'+_0x390dbd(0x1a0)+_0x390dbd(0x16a)+_0x390dbd(0x18a)+_0x390dbd(0x17e)+_0x390dbd(0x1ec)+_0x390dbd(0x168)+_0x390dbd(0x1e0)+_0x390dbd(0x176)+_0x390dbd(0x183)+_0x390dbd(0x1f5)+_0x390dbd(0x1f3)+_0x390dbd(0x1f7)+_0x390dbd(0x1e5),_0x5a8b6d['guiHB']='resul'+'t-en',_0x5a8b6d['xpEVT']='resul'+_0x390dbd(0x194),_0x5a8b6d[_0x390dbd(0x1db)]=_0x390dbd(0x14d)+_0x390dbd(0x1d2)+_0x390dbd(0x216)+_0x390dbd(0x18f)+_0x390dbd(0x17a)+_0x390dbd(0x1c4)+_0x390dbd(0x152)+_0x390dbd(0x185)+_0x390dbd(0x187)+_0x390dbd(0x1d7)+_0x390dbd(0x1b6)+_0x390dbd(0x1de)+'\x20gray'+_0x390dbd(0x1aa)+_0x390dbd(0x16c)+_0x390dbd(0x162)+_0x390dbd(0x1c9)+_0x390dbd(0x1a3)+_0x390dbd(0x186)+_0x390dbd(0x1dd)+_0x390dbd(0x1ba)+'用可能</'+'b>';const _0x2e80aa=_0x5a8b6d,_0x2e9460=worldData[sel['world']]||worldData[_0x390dbd(0x22e)+'sy'],_0x4668dc=charData[sel['chara'+_0x390dbd(0x16f)]]||charData[_0x390dbd(0x1da)+'ess'],_0x3f5cc6=bgData[sel[_0x390dbd(0x1e6)+_0x390dbd(0x1d1)]]||bgData[_0x390dbd(0x164)+'t'],_0x436539=moodData[sel[_0x390dbd(0x22b)]]||moodData[_0x390dbd(0x1a5)+'y'],_0x16edd4=_0x2e80aa[_0x390dbd(0x1d6)](_0x2e80aa[_0x390dbd(0x190)](_0x2e80aa['gsqwS'](_0x2e80aa['gsqwS'](_0x2e80aa[_0x390dbd(0x190)](_0x2e80aa[_0x390dbd(0x1d6)](_0x4668dc['en'],'\x20in\x20'),_0x3f5cc6['en']),',\x20'),_0x2e9460['en']),',\x20')+_0x436539['en'],_0x390dbd(0x153)+_0x390dbd(0x1bf)+_0x390dbd(0x1b4)+'lorin'+_0x390dbd(0x1fa)+_0x390dbd(0x1f6)+_0x390dbd(0x1cd)+_0x390dbd(0x22d)+_0x390dbd(0x21b)+'um\x20we'+'ight\x20'+_0x390dbd(0x211)+_0x390dbd(0x20d)+_0x390dbd(0x1c7)+_0x390dbd(0x180)+'tline'+_0x390dbd(0x166)+_0x390dbd(0x14c)+_0x390dbd(0x1d4)+_0x390dbd(0x193)+_0x390dbd(0x19c)+',\x20cle'+_0x390dbd(0x1c8)+'ack\x20l'+_0x390dbd(0x1df)+_0x390dbd(0x188)+_0x390dbd(0x181)+'e\x20bac'+_0x390dbd(0x205)+_0x390dbd(0x14a)+_0x390dbd(0x173)+'ding,'+_0x390dbd(0x1fc)+_0x390dbd(0x219)+_0x390dbd(0x208)+_0x390dbd(0x1af)+_0x390dbd(0x15f)+_0x390dbd(0x1a4)+'\x20prin'+'table'+'\x20qual'+_0x390dbd(0x169)+'high\x20'+_0x390dbd(0x161)+'l'),_0x254fd4=_0x2e80aa[_0x390dbd(0x174)](_0x2e80aa['yEcEr'](_0x2e80aa['ykdCh'](_0x2e80aa[_0x390dbd(0x190)](_0x2e80aa['VAMYW'](_0x4668dc['ja'],'が')+_0x3f5cc6['ja'],_0x2e80aa[_0x390dbd(0x195)]),_0x2e9460['ja']),'、'),_0x436539['ja'])+_0x2e80aa[_0x390dbd(0x21e)];document[_0x390dbd(0x1cf)+_0x390dbd(0x1e3)+'ById'](_0x2e80aa[_0x390dbd(0x18c)])[_0x390dbd(0x18b)+_0x390dbd(0x1e9)+'t']=_0x16edd4,document['getEl'+_0x390dbd(0x1e3)+'ById'](_0x390dbd(0x1ef)+'t-ja')[_0x390dbd(0x18b)+'onten'+'t']=_0x254fd4,document[_0x390dbd(0x1cf)+_0x390dbd(0x1e3)+_0x390dbd(0x14b)](_0x2e80aa[_0x390dbd(0x182)])['inner'+_0x390dbd(0x204)]=_0x2e80aa[_0x390dbd(0x1db)];}function copyResult(_0x405d1e,_0x5bcdc5,_0x50f6fc){const _0x119f99=_0x3553d6,_0xde3523={'FENkD':function(_0x4f3eb8,_0x32d102){return _0x4f3eb8(_0x32d102);},'LEklH':_0x119f99(0x1b0)+_0x119f99(0x210)+_0x119f99(0x1c5)+'a','IlowM':function(_0x12015f,_0x843c0c){return _0x12015f===_0x843c0c;},'PVLGz':_0x119f99(0x220),'eXNXN':_0x119f99(0x1a9),'IgFym':_0x119f99(0x1bb),'WuybO':function(_0x46805f,_0x138ff6){return _0x46805f===_0x138ff6;},'TXkmW':'YPacO','Vvesm':_0x119f99(0x189)};var _0x3e90da=document['getEl'+_0x119f99(0x1e3)+_0x119f99(0x14b)](_0x405d1e)[_0x119f99(0x18b)+'onten'+'t'],_0x23d291=document[_0x119f99(0x1cf)+'ement'+_0x119f99(0x14b)](_0x5bcdc5),_0x2c1f72=document[_0x119f99(0x1cf)+'ement'+_0x119f99(0x14b)](_0xde3523[_0x119f99(0x1e8)]);_0x2c1f72[_0x119f99(0x159)]=_0x3e90da,_0x2c1f72[_0x119f99(0x1a6)](),_0x2c1f72[_0x119f99(0x158)+'t'](),_0x2c1f72['setSe'+_0x119f99(0x1d3)+_0x119f99(0x1a1)+'ge'](0x0,0x1869f);var _0xd1cdd1=![];try{_0xde3523[_0x119f99(0x223)](_0xde3523[_0x119f99(0x1f8)],_0xde3523['eXNXN'])?_0x5860ed[_0x119f99(0x1b8)+'Name']='chip':_0xd1cdd1=document[_0x119f99(0x212)+'omman'+'d'](_0xde3523[_0x119f99(0x1d5)]);}catch(_0x3f7836){}if(_0xd1cdd1)_0xde3523['WuybO'](_0xde3523[_0x119f99(0x217)],_0xde3523[_0x119f99(0x1b2)])?_0x15ef7d():showSuccess(_0x23d291,_0x50f6fc);else navigator[_0x119f99(0x150)+_0x119f99(0x1a7)]&&navigator[_0x119f99(0x150)+_0x119f99(0x1a7)][_0x119f99(0x191)+'Text'](_0x3e90da)[_0x119f99(0x15c)](function(){showSuccess(_0x23d291,_0x50f6fc);})['catch'](function(){const _0x140d2a=_0x119f99;_0xde3523[_0x140d2a(0x17c)](alert,_0x140d2a(0x1e4)+'敗しました'+_0x140d2a(0x1f2)+_0x140d2a(0x1fb)+_0x140d2a(0x160));});}function showSuccess(_0x21a2ac,_0x4156ff){const _0x578b60=_0x3553d6,_0x348812={'fXNmh':function(_0x19c4d5,_0x528804){return _0x19c4d5+_0x528804;},'GqNZt':_0x578b60(0x179)+_0x578b60(0x224)+_0x578b60(0x172)+'-chec'+_0x578b60(0x1c3)+_0x578b60(0x16b)+_0x578b60(0x19d),'GSMbl':function(_0x432808,_0x8b2116,_0x587a62){return _0x432808(_0x8b2116,_0x587a62);}};_0x21a2ac[_0x578b60(0x18d)+_0x578b60(0x204)]=_0x348812[_0x578b60(0x222)],_0x21a2ac[_0x578b60(0x1f0)][_0x578b60(0x1e6)+_0x578b60(0x1d1)]='#28a7'+'45',_0x348812[_0x578b60(0x17f)](setTimeout,function(){const _0x54cebb=_0x578b60;_0x21a2ac[_0x54cebb(0x18d)+_0x54cebb(0x204)]=_0x348812[_0x54cebb(0x20e)](_0x54cebb(0x179)+_0x54cebb(0x224)+_0x54cebb(0x172)+_0x54cebb(0x227)+_0x54cebb(0x16d)+'>\x20',_0x4156ff),_0x21a2ac[_0x54cebb(0x1f0)][_0x54cebb(0x1e6)+_0x54cebb(0x1d1)]='';},0x5dc);}</script>
 </body>
 </html>
